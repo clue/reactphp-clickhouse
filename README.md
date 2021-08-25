@@ -34,16 +34,17 @@ Once [installed](#install), you can use the following code to connect to your
 local ClickHouse database and send some queries:
 
 ```php
-$loop = React\EventLoop\Factory::create();
-$client = new Clue\React\ClickHouse\Client('http://localhost:8123/', $loop);
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+$client = new Clue\React\ClickHouse\ClickHouseClient('http://localhost:8123/');
 
 $client->query('SELECT id, name FROM users')->then(function (Clue\React\ClickHouse\Result $result) {
     var_dump($result);
 }, function (Exception $e) {
     echo 'Error: ' . $e->getMessage() . PHP_EOL;
 });
-
-$loop->run();
 ```
 
 ## Install
