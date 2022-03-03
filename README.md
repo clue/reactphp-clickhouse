@@ -69,10 +69,13 @@ local ClickHouse database and send some queries:
 
 require __DIR__ . '/vendor/autoload.php';
 
-$client = new Clue\React\ClickHouse\ClickHouseClient('http://localhost:8123/');
+$db = new Clue\React\ClickHouse\ClickHouseClient('http://localhost:8123/');
 
-$client->query('SELECT id, name FROM users')->then(function (Clue\React\ClickHouse\Result $result) {
-    var_dump($result);
+$db->query('SELECT id, name FROM users')->then(function (Clue\React\ClickHouse\Result $result) {
+    echo count($result->data) . ' row(s) in set' . PHP_EOL;
+    foreach ($result->data as $user) {
+       echo $user['id'] . ': ' . $user['name'] . PHP_EOL;
+    }
 }, function (Exception $e) {
     echo 'Error: ' . $e->getMessage() . PHP_EOL;
 });
@@ -462,7 +465,6 @@ You can run a temporary ClickHouse database server in a Docker container like th
 ```
 $ docker run -it --rm --net=host yandex/clickhouse-server
 ```
-
 
 ## License
 
