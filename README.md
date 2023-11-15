@@ -114,7 +114,7 @@ $db->query('SELECT COUNT(*) FROM users')->then(
         // results received
     },
     function (Exception $e) {
-        // an error occured while executing the query
+        // an error occurred while executing the query
     }
 });
 ```
@@ -191,7 +191,7 @@ try {
     $result = Block\await($promise, Loop::get());
     // results received
 } catch (Exception $e) {
-    // an error occured while executing the query
+    // an error occurred while executing the query
 }
 ```
 
